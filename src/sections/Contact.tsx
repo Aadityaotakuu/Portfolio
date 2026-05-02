@@ -17,12 +17,26 @@ const FIELDS = [
   { name: 'email', label: 'Email Address', type: 'email' },
 ] as const
 
-// Detect if we're running locally vs deployed
-const isLocalhost = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+// Determine API endpoint based on environment
+// In production (Vercel), use relative path /api/contact
+// In development (localhost), use http://localhost:8081/api/contact
+const getContactEndpoint = () => {
+  if (typeof window === 'undefined') return '/api/contact'
+  
+  const hostname = window.location.hostname
+  const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1'
+  
+  // If VITE_CONTACT_ENDPOINT is explicitly set in env, use it
+  const envEndpoint = import.meta.env.VITE_CONTACT_ENDPOINT
+  if (envEndpoint && envEndpoint !== 'http://localhost:8081/api/contact') {
+    return envEndpoint
+  }
+  
+  // Otherwise, use localhost for local dev, /api/contact for production
+  return isLocalhost ? 'http://localhost:8081/api/contact' : '/api/contact'
+}
 
-const CONTACT_ENDPOINT =
-  import.meta.env.VITE_CONTACT_ENDPOINT ||
-  (isLocalhost ? 'http://localhost:8081/api/contact' : '/api/contact')
+const CONTACT_ENDPOINT = getContactEndpoint()
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
