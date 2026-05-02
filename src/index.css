@@ -267,7 +267,11 @@ html {
   }
 
   .three-bg {
-    display: none;
+    opacity: 0.65;
+  }
+
+  .three-bg canvas {
+    transform: scale(1.02);
   }
 }
 
