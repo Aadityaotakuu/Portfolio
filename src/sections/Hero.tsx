@@ -261,7 +261,7 @@ const Hero = () => {
             {/* eyebrow badge */}
             <motion.div className="hero-badge" variants={fadeUp}>
               <span className="hero-badge__dot" />
-              FUTURISTIC FULL-STACK PORTFOLIO
+               PORTFOLIO
             </motion.div>
 
             {/* heading */}
