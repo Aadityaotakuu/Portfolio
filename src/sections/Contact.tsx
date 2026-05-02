@@ -17,9 +17,12 @@ const FIELDS = [
   { name: 'email', label: 'Email Address', type: 'email' },
 ] as const
 
+// Detect if we're running locally vs deployed
+const isLocalhost = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+
 const CONTACT_ENDPOINT =
   import.meta.env.VITE_CONTACT_ENDPOINT ||
-  (import.meta.env.PROD ? '/api/contact' : 'http://localhost:8081/api/contact')
+  (isLocalhost ? 'http://localhost:8081/api/contact' : '/api/contact')
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
