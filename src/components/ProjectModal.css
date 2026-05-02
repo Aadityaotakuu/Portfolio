@@ -1,0 +1,309 @@
+/* ╔══════════════════════════════════════════════════╗
+   ║         PROJECT MODAL – PREMIUM DETAIL VIEW      ║
+   ╚══════════════════════════════════════════════════╝ */
+
+.pmodal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.pmodal {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  max-height: 85vh;
+  overflow-y: auto;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(167, 139, 250, 0.15);
+  background: rgba(10, 14, 24, 0.95);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.5),
+    0 0 80px rgba(139, 92, 246, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  padding: 2.5rem;
+}
+
+/* Scrollbar styling */
+.pmodal::-webkit-scrollbar {
+  width: 4px;
+}
+.pmodal::-webkit-scrollbar-track {
+  background: transparent;
+}
+.pmodal::-webkit-scrollbar-thumb {
+  background: rgba(167, 139, 250, 0.3);
+  border-radius: 4px;
+}
+
+/* ── Close Button ── */
+.pmodal__close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.pmodal__close:hover {
+  border-color: rgba(167, 139, 250, 0.4);
+  color: #fff;
+  background: rgba(167, 139, 250, 0.1);
+  transform: rotate(90deg);
+}
+
+/* ── Header ── */
+.pmodal__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.pmodal__icon {
+  font-size: 2.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.pmodal__title-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.pmodal__title {
+  font-family: 'Unbounded', 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.pmodal__subtitle {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.35rem;
+}
+
+.pmodal__year-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  background: rgba(167, 139, 250, 0.06);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: rgba(167, 139, 250, 0.9);
+  letter-spacing: 0.1em;
+  margin-top: 0.5rem;
+}
+
+/* ── Section Blocks ── */
+.pmodal__section {
+  margin-top: 1.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pmodal__section-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: rgba(167, 139, 250, 0.7);
+  margin-bottom: 0.75rem;
+}
+
+.pmodal__section-text {
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+/* ── Feature List ── */
+.pmodal__features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pmodal__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.pmodal__feature-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(167, 139, 250, 0.7);
+  flex-shrink: 0;
+  margin-top: 0.45rem;
+  box-shadow: 0 0 6px rgba(167, 139, 250, 0.4);
+}
+
+/* ── Tech Stack Chips ── */
+.pmodal__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pmodal__tech-chip {
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  background: rgba(56, 189, 248, 0.06);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(56, 189, 248, 0.85);
+  letter-spacing: 0.05em;
+}
+
+/* ── Tags ── */
+.pmodal__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.pmodal__tag {
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Links ── */
+.pmodal__links {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.pmodal__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.pmodal__link--primary {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(56, 189, 248, 0.8));
+  color: #000;
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.25);
+}
+
+.pmodal__link--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(139, 92, 246, 0.35);
+}
+
+.pmodal__link--secondary {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+}
+
+.pmodal__link--secondary:hover {
+  border-color: rgba(167, 139, 250, 0.3);
+  background: rgba(167, 139, 250, 0.08);
+  transform: translateY(-2px);
+}
+
+/* ── Highlight Badge ── */
+.pmodal__highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(52, 211, 153, 0.15);
+  background: rgba(52, 211, 153, 0.06);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(52, 211, 153, 0.9);
+  margin-top: 1.5rem;
+}
+
+.pmodal__highlight-icon {
+  font-size: 0.85rem;
+}
+
+/* ── Decorative Glow ── */
+.pmodal__glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  top: -80px;
+  right: -80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12), transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .pmodal-backdrop {
+    padding: 1rem;
+    align-items: flex-end;
+  }
+
+  .pmodal {
+    max-height: 90vh;
+    padding: 1.75rem;
+    border-radius: 1.5rem 1.5rem 0 0;
+  }
+
+  .pmodal__header {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .pmodal__links {
+    flex-direction: column;
+  }
+}

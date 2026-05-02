@@ -1,0 +1,421 @@
+/* ╔══════════════════════════════════════════════════╗
+   ║             PROJECT CARD CSS                     ║
+   ╚══════════════════════════════════════════════════╝ */
+
+.pcard {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transform-style: preserve-3d;
+  transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+@media (min-width: 768px) {
+  .pcard {
+    padding: 2rem;
+  }
+}
+
+.pcard.hovered {
+  border-color: rgba(139, 92, 246, 0.4);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.pcard-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.pcard.hovered .pcard-glow {
+  opacity: 1;
+}
+
+.pcard-accent-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.8), transparent);
+  transform: scaleX(0);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pcard.hovered .pcard-accent-bar {
+  transform: scaleX(1);
+}
+
+.pcard-header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.pcard-header-left {
+  flex: 1;
+}
+
+.pcard-eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.pcard-eyebrow {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(139, 92, 246, 0.8);
+  font-weight: 600;
+}
+
+.pcard-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--status-color, #94a3b8);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--status-color, #94a3b8);
+  box-shadow: 0 0 8px var(--status-color, #94a3b8);
+}
+
+.pcard-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--);  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .pcard-title {
+    font-size: 1.75rem;
+  }
+}
+
+.pcard-index {
+  font-size: 1rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.15);
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  user-select: none;
+}
+
+.pcard.hovered .pcard-index {
+  color: rgba(139, 92, 246, 0.6);
+}
+
+.pcard-desc {
+  position: relative;
+  z-index: 10;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.pcard-highlight {
+  position: relative;
+  z-index: 10;
+  margin-top: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+}
+
+.pcard-tabs {
+  position: relative;
+  z-index: 10;
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.pcard-tab {
+  position: relative;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  transition: color 0.3s;
+}
+
+.pcard-tab:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.pcard-tab.active {
+  color: var(--);}
+
+.pcard-tab-line {
+  position: absolute;
+  bottom: -0.6rem;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #a78bfa;
+  border-radius: 2px 2px 0 0;
+}
+
+.pcard-tab-content {
+  position: relative;
+  z-index: 10;
+  margin-top: 1.25rem;
+  min-height: 100px;
+}
+
+.pcard-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pcard-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+
+.feature-bullet {
+  margin-top: 0.4rem;
+  flex-shrink: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #a78bfa;
+  box-shadow: 0 0 5px rgba(167, 139, 250, 0.8);
+}
+
+.pcard-expand {
+  margin-top: 0.75rem;
+  background: transparent;
+  border: none;
+  color: #a78bfa;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.pcard-expand:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.pcard-tech-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pcard-tech-chip {
+  padding: 0.35rem 0.85rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  cursor: default;
+}
+
+.pcard-tags {
+  position: relative;
+  z-index: 10;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pcard-tag {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: monospace;
+}
+
+.pcard-footer {
+  position: relative;
+  z-index: 10;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.pcard-actions-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pcard-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--);  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.pcard-action-btn.like-btn {
+  width: auto;
+  padding: 0 0.75rem;
+  border-radius: 999px;
+}
+
+.pcard-action-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.like-btn.liked {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+
+.action-count {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.pcard-actions-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Particles */
+.pcard-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #a78bfa;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #a78bfa;
+  pointer-events: none;
+  z-index: 20;
+  animation: float-particle 2s infinite ease-in-out var(--p-delay);
+}
+
+.pcard-particle:nth-child(1) { top: -1px; left: 20%; }
+.pcard-particle:nth-child(2) { top: 40%; right: -1px; }
+.pcard-particle:nth-child(3) { bottom: -1px; left: 70%; }
+
+@keyframes float-particle {
+  0% { transform: scale(0) translate(0, 0); opacity: 0; }
+  50% { transform: scale(1.5) translate(0, -10px); opacity: 1; }
+  100% { transform: scale(0) translate(0, -20px); opacity: 0; }
+}
+
+@media (max-width: 640px) {
+  .pcard {
+    padding: 1.25rem;
+  }
+
+  .pcard-header {
+    flex-direction: column;
+  }
+
+  .pcard-header-right {
+    align-self: flex-end;
+  }
+
+  .pcard-tabs {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .pcard-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pcard-actions-left {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .pcard-actions-right .btn-secondary {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .pcard {
+    transform: none !important;
+  }
+
+  .pcard-glow,
+  .pcard-accent-bar,
+  .pcard-particle {
+    display: none;
+  }
+}
