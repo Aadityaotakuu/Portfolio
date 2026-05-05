@@ -62,7 +62,7 @@ export const commandDefinitions: CommandDefinition[] = [
     label: 'Open GitHub',
     keywords: ['github', 'code', 'repo'],
     action: 'link',
-    target: 'https://github.com/Aadityaotakuu',
+    target: 'https://github.com/aaditya95-parab',
   },
   {
     id: 'open-linkedin',

@@ -98,7 +98,7 @@ export const projects: Project[] = [
     category: 'Logistics',
     year: 2023,
     links: {
-      github: 'https://github.com/Aadityaotakuu/Annam.git',
+      github: 'https://github.com/aaditya95-parab/Annam.git',
     },
     preview: {
       label: 'Rescue Logistics UI',
@@ -133,7 +133,7 @@ export const projects: Project[] = [
     category: 'HealthTech',
     year: 2024,
     links: {
-      github: 'https://github.com/Aadityaotakuu/Codered.git',
+      github: 'https://github.com/aaditya95-parab/Codered.git',
     },
     preview: {
       label: 'Emergency Dispatch UI',
@@ -205,7 +205,7 @@ export const projects: Project[] = [
     category: 'AI/ML',
     year: 2024,
     links: {
-      github: 'https://github.com/Aadityaotakuu/Startup.git',
+      github: 'https://github.com/aaditya95-parab/Startup.git',
     },
     preview: {
       label: 'Investor Analytics',

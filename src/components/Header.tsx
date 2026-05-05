@@ -137,7 +137,7 @@ const Header = () => {
             CTRL + K
           </span>
           <a
-            href="https://github.com/Aadityaotakuu"
+            href="https://github.com/aaditya95-parab"
             target="_blank"
             rel="noreferrer"
             className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[0.65rem] uppercase tracking-[0.2em] text-white/70 transition hover:border-[rgba(57,208,255,0.5)] hover:text-white sm:inline-flex"

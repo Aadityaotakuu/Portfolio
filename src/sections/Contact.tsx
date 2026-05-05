@@ -302,9 +302,9 @@ const Contact = () => {
 
   const socials = [
     {
-      href: 'https://github.com/Aadityaotakuu',
+      href: 'https://github.com/aaditya95-parab',
       icon: <GitHubIcon className="h-5 w-5" />,
-      label: 'github.com/Aadityaotakuu',
+      label: 'github.com/aaditya95-parab',
     },
     {
       href: 'https://linkedin.com/in/aaditya-parab-5486212b7/',
