@@ -37,7 +37,6 @@ const getContactEndpoint = () => {
 }
 
 const CONTACT_ENDPOINT = getContactEndpoint()
-
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
 /* ── Tilt wrapper (reusable) ── */
@@ -318,7 +317,7 @@ const Contact = () => {
     <Section
       id="contact"
       eyebrow="Contact"
-      title="Let&apos;s build the next legend"
+      title="Start a conversation"
     >
       <div ref={sectionRef} className="ct-grid">
         {/* ─── FORM CARD ─── */}
@@ -364,7 +363,7 @@ const Contact = () => {
 
             <div className="ct-form__footer">
               <span className="ct-form__hint">
-                {status === 'idle' && 'Feel free to drop me a message about anything — project ideas, collaboration, or just to say hi!'}
+                {status === 'idle' && 'Feel free to drop me a message about anything - project ideas, collaboration, or just to say hi!'}
                 {status === 'sending' && ''}
                 {status === 'error' && 'Something went wrong. Try again.'}
               </span>
@@ -395,10 +394,10 @@ const Contact = () => {
 
         {/* ─── SOCIAL CARD ─── */}
         <TiltPanel className={`ct-card ct-card--social ${visible ? 'ct-card--revealed ct-card--revealed-delay' : ''}`}>
-          <p className="ct-card__eyebrow">Social</p>
-          <h3 className="ct-card__heading">Find me on these channels</h3>
+          <p className="ct-card__eyebrow">Direct</p>
+          <h3 className="ct-card__heading">Reach me on these channels</h3>
           <p className="ct-card__body">
-            Let's connect — I'm always open to new ideas, collaborations, and conversations.
+            I am open to new ideas, collaborations, and frontend opportunities.
           </p>
 
           <div className="ct-social-list">

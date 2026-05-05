@@ -1,7 +1,7 @@
 import { useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { Variants } from 'framer-motion'
-import type { Project } from '../data/projects'
+import type { Project, ProjectLink } from '../data/projects'
 import './ProjectModal.css'
 
 type ProjectModalProps = {
@@ -73,6 +73,9 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
     }
   }, [project, handleKeyDown])
 
+  const links: ProjectLink = project?.links ?? {}
+  const hasLinks = Boolean(links.github || links.demo)
+
   return (
     <AnimatePresence>
       {project && (
@@ -111,10 +114,23 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                 <div className="pmodal__title-group">
                   <h2 className="pmodal__title">{project.title}</h2>
                   <p className="pmodal__subtitle">{project.subtitle}</p>
-                  <span className="pmodal__year-badge">
-                    {project.category} · {project.year}
-                  </span>
+                  <div className="pmodal__badge-row">
+                    <span className="pmodal__year-badge">
+                      {project.category} · {project.year}
+                    </span>
+                    {project.confidentiality && (
+                      <span className="pmodal__confidential">
+                        {project.confidentiality}
+                      </span>
+                    )}
+                  </div>
                 </div>
+              </motion.div>
+
+              {/* Summary */}
+              <motion.div className="pmodal__section" variants={fadeIn}>
+                <p className="pmodal__section-label">Summary</p>
+                <p className="pmodal__section-text">{project.summary}</p>
               </motion.div>
 
               {/* Problem */}
@@ -128,6 +144,28 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                 <p className="pmodal__section-label">The Solution</p>
                 <p className="pmodal__section-text">{project.description}</p>
               </motion.div>
+
+              {/* Contribution */}
+              <motion.div className="pmodal__section" variants={fadeIn}>
+                <p className="pmodal__section-label">My Contribution</p>
+                <p className="pmodal__section-text">{project.contribution}</p>
+              </motion.div>
+
+              {/* UI Overview */}
+              {project.uiOverview && (
+                <motion.div className="pmodal__section" variants={fadeIn}>
+                  <p className="pmodal__section-label">UI Overview</p>
+                  <p className="pmodal__section-text">{project.uiOverview}</p>
+                </motion.div>
+              )}
+
+              {/* System Behavior */}
+              {project.systemBehavior && (
+                <motion.div className="pmodal__section" variants={fadeIn}>
+                  <p className="pmodal__section-label">System Behavior</p>
+                  <p className="pmodal__section-text">{project.systemBehavior}</p>
+                </motion.div>
+              )}
 
               {/* Key Features */}
               <motion.div className="pmodal__section" variants={fadeIn}>
@@ -185,6 +223,37 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                     </span>
                   ))}
                 </div>
+              </motion.div>
+
+              {/* Links */}
+              <motion.div className="pmodal__section" variants={fadeIn}>
+                <p className="pmodal__section-label">Links</p>
+                {hasLinks ? (
+                  <div className="pmodal__links">
+                    {links.demo && (
+                      <a
+                        className="pmodal__link pmodal__link--primary"
+                        href={links.demo}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Live Demo
+                      </a>
+                    )}
+                    {links.github && (
+                      <a
+                        className="pmodal__link pmodal__link--secondary"
+                        href={links.github}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        GitHub
+                      </a>
+                    )}
+                  </div>
+                ) : (
+                  <div className="pmodal__private">🔒 Code Private (Available on request)</div>
+                )}
               </motion.div>
 
             </motion.div>

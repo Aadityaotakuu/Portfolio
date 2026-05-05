@@ -1,6 +1,7 @@
 export type Skill = {
   name: string
   level: number
+  icon?: string
 }
 
 export type SkillCategory = {
@@ -12,42 +13,42 @@ export type SkillCategory = {
 export const skillCategories: SkillCategory[] = [
   {
     title: 'Languages',
-    description: 'Systems-first foundations with modern type safety.',
+    description: 'Core web languages with strong type safety.',
     items: [
-      { name: 'TypeScript', level: 92 },
-      { name: 'Python', level: 90 },
-      { name: 'SQL', level: 84 },
-      { name: 'Java', level: 78 },
+      { name: 'TypeScript', level: 92, icon: 'TS' },
+      { name: 'JavaScript', level: 90, icon: 'JS' },
+      { name: 'HTML', level: 88, icon: 'HTML' },
+      { name: 'CSS', level: 86, icon: 'CSS' },
     ],
   },
   {
     title: 'Frameworks',
-    description: 'Full-stack delivery from UI to intelligent APIs.',
+    description: 'Component-driven UI foundations.',
     items: [
-      { name: 'React', level: 93 },
-      { name: 'FastAPI', level: 88 },
-      { name: 'Node.js', level: 82 },
-      { name: 'Streamlit', level: 80 },
+      { name: 'React', level: 93, icon: 'RE' },
+      { name: 'Vite', level: 86, icon: 'VT' },
+      { name: 'React Router', level: 84, icon: 'RR' },
+      { name: 'Node.js', level: 78, icon: 'ND' },
     ],
   },
   {
-    title: 'Databases',
-    description: 'Relational depth with scalable NoSQL choices.',
+    title: 'UI & Motion',
+    description: 'Interfaces that feel fast and polished.',
     items: [
-      { name: 'PostgreSQL', level: 85 },
-      { name: 'MongoDB', level: 83 },
-      { name: 'Redis', level: 76 },
-      { name: 'SQLite', level: 72 },
+      { name: 'Tailwind CSS', level: 88, icon: 'TW' },
+      { name: 'Framer Motion', level: 86, icon: 'FM' },
+      { name: 'Design Systems', level: 82, icon: 'DS' },
+      { name: 'Accessibility', level: 80, icon: 'A11Y' },
     ],
   },
   {
     title: 'Tools',
-    description: 'Design, delivery, and ML-focused toolchains.',
+    description: 'Shipping, testing, and delivery workflows.',
     items: [
-      { name: 'Docker', level: 82 },
-      { name: 'Git', level: 90 },
-      { name: 'Linux', level: 78 },
-      { name: 'Figma', level: 70 },
+      { name: 'Git', level: 90, icon: 'GIT' },
+      { name: 'Vercel', level: 84, icon: 'VC' },
+      { name: 'Figma', level: 78, icon: 'FIG' },
+      { name: 'Lighthouse', level: 76, icon: 'LH' },
     ],
   },
 ]

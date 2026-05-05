@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback } from 'react'
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import type { Project } from '../data/projects'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import type { Project, ProjectLink } from '../data/projects'
 import MagneticButton from './MagneticButton'
 import './ProjectCard.css'
 
@@ -12,23 +12,18 @@ type ProjectCardProps = {
 const ProjectCard = ({ project, index }: ProjectCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
-  const [activeTab, setActiveTab] = useState<'features' | 'tech'>('features')
-  const [copiedLink, setCopiedLink] = useState(false)
-  const [liked, setLiked] = useState(false)
-  const [likeCount, setLikeCount] = useState(Math.floor(Math.random() * 50) + 10)
   const cardRef = useRef<HTMLDivElement>(null)
 
-  /* ── 3D tilt ── */
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), {
-    stiffness: 200,
-    damping: 30,
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [6, -6]), {
+    stiffness: 180,
+    damping: 24,
   })
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), {
-    stiffness: 200,
-    damping: 30,
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-6, 6]), {
+    stiffness: 180,
+    damping: 24,
   })
 
   const glowX = useMotionValue(50)
@@ -54,65 +49,74 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
     setIsHovered(false)
   }, [mouseX, mouseY])
 
-  /* ── Share / Copy ── */
-  const handleShare = async () => {
-    const url = project.links.demo || project.links.github || ''
-    try {
-      await navigator.clipboard.writeText(url)
-      setCopiedLink(true)
-      setTimeout(() => setCopiedLink(false), 2000)
-    } catch {
-      /* fallback */
-    }
-  }
-
-  /* ── Like ── */
-  const handleLike = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    setLiked((prev) => !prev)
-    setLikeCount((prev) => (liked ? prev - 1 : prev + 1))
-  }
-
-  /* ── Status color ── */
   const statusColor =
     project.status === 'live'
-      ? '#34d399'
+      ? '#22c55e'
       : project.status === 'in-progress'
-      ? '#fbbf24'
+      ? '#f59e0b'
       : '#94a3b8'
 
-  const showGitHubButton = ['startup-predictor', 'annam', 'coderedai'].includes(project.id)
+  const preview = project.preview ?? {
+    label: project.subtitle,
+    metric: 'Product case study',
+    accent: 'var(--accent)',
+    secondary: 'var(--accent-2)',
+  }
+
+  const links: ProjectLink = project.links ?? {}
+  const hasGithub = Boolean(links.github)
+  const hasDemo = Boolean(links.demo)
+  const hasLinks = hasGithub || hasDemo
+  const showTrustNotes = !hasLinks && (project.uiOverview || project.systemBehavior)
+  const previewFeatures = isExpanded ? project.features : project.features.slice(0, 3)
 
   return (
     <motion.article
       ref={cardRef}
-      className={`pcard ${isExpanded ? 'expanded' : ''} ${isHovered ? 'hovered' : ''}`}
+      className={`pcard ${isHovered ? 'hovered' : ''}`}
       style={{ rotateX, rotateY, transformPerspective: 1200 }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, y: 40, scale: 0.96 }}
+      initial={{ opacity: 0, y: 40, scale: 0.98 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.55, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       layout
     >
-      {/* ── Glow effect ── */}
       <motion.div
         className="pcard-glow"
         style={{
           background: useTransform(
             [glowX, glowY],
             ([x, y]) =>
-              `radial-gradient(600px circle at ${x}% ${y}%, rgba(167,139,250,0.12), transparent 60%)`
+              `radial-gradient(620px circle at ${x}% ${y}%, rgba(57,208,255,0.12), transparent 60%)`
           ),
         }}
       />
 
-      {/* ── Top accent bar ── */}
-      <div className="pcard-accent-bar" />
+      <div className="pcard-preview" style={{
+        '--preview-accent': preview.accent,
+        '--preview-secondary': preview.secondary,
+      } as React.CSSProperties}>
+        <div className="pcard-preview__top">
+          <span className="pcard-preview__pill">Case Study</span>
+          {project.confidentiality && (
+            <span className="pcard-preview__tag">{project.confidentiality}</span>
+          )}
+        </div>
+        <div className="pcard-preview__body">
+          <span className="pcard-preview__metric">{preview.metric}</span>
+          <span className="pcard-preview__label">{preview.label}</span>
+        </div>
+        <div className="pcard-preview__grid">
+          <span className="pcard-preview__line" />
+          <span className="pcard-preview__line" />
+          <span className="pcard-preview__line" />
+          <span className="pcard-preview__line" />
+        </div>
+      </div>
 
-      {/* ── Header ── */}
       <div className="pcard-header">
         <div className="pcard-header-left">
           <div className="pcard-eyebrow-row">
@@ -124,14 +128,21 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               </span>
             )}
           </div>
-          <h3 className="pcard-title">{project.title}</h3>
+          <div className="pcard-title-row">
+            <span className="pcard-icon">{project.icon}</span>
+            <h3 className="pcard-title">{project.title}</h3>
+          </div>
+          <div className="pcard-meta">
+            <span>{project.category}</span>
+            <span className="pcard-meta-dot" />
+            <span>{project.year}</span>
+          </div>
         </div>
 
         <div className="pcard-header-right">
-          {/* Index chip */}
           <motion.span
             className="pcard-index"
-            whileHover={{ scale: 1.15, rotate: 8 }}
+            whileHover={{ scale: 1.12, rotate: 6 }}
             whileTap={{ scale: 0.9 }}
           >
             0{index + 1}
@@ -139,203 +150,122 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
         </div>
       </div>
 
-      {/* ── Description ── */}
-      <p className="pcard-desc">{project.description}</p>
+      <div className="pcard-body">
+        <p className="pcard-summary">{project.summary}</p>
 
-      {/* ── Highlight strip ── */}
-      {project.highlight && (
-        <motion.div
-          className="pcard-highlight"
-          initial={{ opacity: 0, x: -12 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: index * 0.08 + 0.25 }}
+        <div className="pcard-section">
+          <p className="pcard-section__label">Problem</p>
+          <p className="pcard-section__text">{project.problem}</p>
+        </div>
+
+        <div className="pcard-section">
+          <p className="pcard-section__label">Key Features</p>
+          <ul className="pcard-features">
+            {previewFeatures.map((feature) => (
+              <li key={feature} className="pcard-feature">
+                <span className="feature-bullet" />
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <button
+          className="pcard-toggle"
+          onClick={(e) => {
+            e.stopPropagation()
+            setIsExpanded((prev) => !prev)
+          }}
+          aria-expanded={isExpanded}
         >
-          <span className="highlight-icon">⚡</span>
-          <span>{project.highlight}</span>
-        </motion.div>
-      )}
+          {isExpanded ? 'View less' : 'View more'}
+        </button>
 
-      {/* ── Interactive Tabs ── */}
-      <div className="pcard-tabs">
-        {(['features', 'tech'] as const).map((tab) => (
-          <button
-            key={tab}
-            className={`pcard-tab ${activeTab === tab ? 'active' : ''}`}
-            onClick={(e) => {
-              e.stopPropagation()
-              setActiveTab(tab)
-            }}
-          >
-            {tab === 'features' ? '✦ Features' : '⚙ Tech Stack'}
-            {activeTab === tab && <motion.div className="pcard-tab-line" layoutId={`tab-${project.id}`} />}
-          </button>
-        ))}
-      </div>
+        {isExpanded && (
+          <div className="pcard-details">
+            <div className="pcard-section">
+              <p className="pcard-section__label">Tech Stack</p>
+              <div className="pcard-tech-grid">
+                {project.tech.map((tech) => (
+                  <span key={tech} className="pcard-tech-chip">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
 
-      {/* ── Tab content ── */}
-      <AnimatePresence mode="wait">
-        {activeTab === 'features' ? (
-          <motion.div
-            key="features"
-            className="pcard-tab-content"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-          >
-            <ul className="pcard-features">
-              {project.features.slice(0, isExpanded ? undefined : 3).map((feature, i) => (
-                <motion.li
-                  key={feature}
-                  className="pcard-feature"
-                  initial={{ opacity: 0, x: -8 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.06 }}
-                >
-                  <span className="feature-bullet" />
-                  {feature}
-                </motion.li>
-              ))}
-            </ul>
-            {project.features.length > 3 && (
-              <button
-                className="pcard-expand"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  setIsExpanded((prev) => !prev)
-                }}
-              >
-                {isExpanded ? '← Show less' : `+${project.features.length - 3} more features →`}
-              </button>
+            <div className="pcard-section">
+              <p className="pcard-section__label">My Contribution</p>
+              <p className="pcard-section__text">{project.contribution}</p>
+            </div>
+
+            {showTrustNotes && (
+              <div className="pcard-section pcard-trust">
+                {project.uiOverview && (
+                  <div className="pcard-trust__item">
+                    <span className="pcard-trust__label">UI Overview</span>
+                    <span className="pcard-trust__text">{project.uiOverview}</span>
+                  </div>
+                )}
+                {project.systemBehavior && (
+                  <div className="pcard-trust__item">
+                    <span className="pcard-trust__label">System Behavior</span>
+                    <span className="pcard-trust__text">{project.systemBehavior}</span>
+                  </div>
+                )}
+              </div>
             )}
-          </motion.div>
-        ) : (
-          <motion.div
-            key="tech"
-            className="pcard-tab-content"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-          >
-            <div className="pcard-tech-grid">
-              {project.tech.map((tech, i) => (
-                <motion.span
-                  key={tech}
-                  className="pcard-tech-chip"
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: i * 0.04 }}
-                  whileHover={{ scale: 1.08, y: -2 }}
-                >
-                  {tech}
-                </motion.span>
+
+            {project.highlight && (
+              <div className="pcard-highlight">
+                <span className="highlight-icon">●</span>
+                <span>{project.highlight}</span>
+              </div>
+            )}
+
+            <div className="pcard-tags">
+              {project.tags.map((tag) => (
+                <span key={tag} className="pcard-tag">
+                  #{tag}
+                </span>
               ))}
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
-
-      {/* ── Tags ── */}
-      <div className="pcard-tags">
-        {project.tags.map((tag) => (
-          <span key={tag} className="pcard-tag">
-            #{tag}
-          </span>
-        ))}
       </div>
 
-      {/* ── Footer actions ── */}
       <div className="pcard-footer">
-        <div className="pcard-actions-left">
-          {/* Like */}
-          <motion.button
-            className={`pcard-action-btn like-btn ${liked ? 'liked' : ''}`}
-            onClick={handleLike}
-            whileTap={{ scale: 0.85 }}
-            title="Like"
-          >
-            <motion.span
-              animate={liked ? { scale: [1, 1.4, 1] } : {}}
-              transition={{ duration: 0.35 }}
-            >
-              {liked ? '❤️' : '🤍'}
-            </motion.span>
-            <span className="action-count">{likeCount}</span>
-          </motion.button>
-
-          {/* Share */}
-          <motion.button
-            className="pcard-action-btn"
-            onClick={(e) => {
-              e.stopPropagation()
-              handleShare()
-            }}
-            whileTap={{ scale: 0.9 }}
-            title="Copy link"
-          >
-            <AnimatePresence mode="wait">
-              {copiedLink ? (
-                <motion.span
-                  key="check"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  exit={{ scale: 0 }}
+        <div className="pcard-actions-right" onClick={(e) => e.stopPropagation()}>
+          {hasLinks ? (
+            <>
+              {hasDemo && (
+                <MagneticButton
+                  href={links.demo}
+                  target="_blank"
+                  rel="noreferrer"
+                  variant="primary"
+                  className="pcard-link"
                 >
-                  ✅
-                </motion.span>
-              ) : (
-                <motion.span
-                  key="share"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  exit={{ scale: 0 }}
-                >
-                  🔗
-                </motion.span>
+                  Live Demo
+                </MagneticButton>
               )}
-            </AnimatePresence>
-          </motion.button>
-        </div>
-
-        <div className="pcard-actions-right">
-          {showGitHubButton && (
-            <MagneticButton
-              href={project.links.github}
-              target="_blank"
-              rel="noreferrer"
-              variant="secondary"
-            >
-              <span className="btn-inner">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z" />
-                </svg>
-                GitHub
-              </span>
-            </MagneticButton>
+              {hasGithub && (
+                <MagneticButton
+                  href={links.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  variant="secondary"
+                  className="pcard-link"
+                >
+                  GitHub
+                </MagneticButton>
+              )}
+            </>
+          ) : (
+            <span className="pcard-private">🔒 Code Private (Available on request)</span>
           )}
         </div>
-
       </div>
-
-      {/* ── Hover border particles ── */}
-      <AnimatePresence>
-        {isHovered && (
-          <>
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="pcard-particle"
-                style={{ '--p-delay': `${i * 0.6}s` } as React.CSSProperties}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              />
-            ))}
-          </>
-        )}
-      </AnimatePresence>
     </motion.article>
   )
 }

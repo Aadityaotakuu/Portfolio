@@ -1,0 +1,77 @@
+/* CTA - recruiter-ready conversion section */
+
+.cta-card {
+  position: relative;
+  border-radius: 28px;
+  padding: 32px;
+  background: linear-gradient(135deg, rgba(57, 208, 255, 0.12), rgba(245, 182, 94, 0.12));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(4, 10, 24, 0.4);
+}
+
+.cta-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(500px circle at 10% 10%, rgba(57, 208, 255, 0.2), transparent 55%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.cta-copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 12px;
+  max-width: 640px;
+}
+
+.cta-copy h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: var(--text);
+}
+
+.cta-copy p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.cta-actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.cta-meta {
+  position: relative;
+  z-index: 1;
+  margin-top: 18px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 640px) {
+  .cta-card {
+    padding: 24px;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta-actions .btn-primary,
+  .cta-actions .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}

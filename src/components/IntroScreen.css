@@ -1,5 +1,5 @@
 /* ╔══════════════════════════════════════════════════╗
-   ║     CINEMATIC INTRO SCREEN – DARK FANTASY        ║
+  ║     CINEMATIC INTRO SCREEN - DARK FANTASY        ║
    ╚══════════════════════════════════════════════════╝ */
 
 .intro {
@@ -38,7 +38,7 @@
   height: 600px;
   top: -20%;
   left: -10%;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.25), transparent 70%);
+  background: radial-gradient(circle, rgba(57, 208, 255, 0.25), transparent 70%);
   animation: introOrbPulse1 4s ease-in-out infinite;
 }
 
@@ -47,7 +47,7 @@
   height: 500px;
   bottom: -15%;
   right: -8%;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.2), transparent 70%);
+  background: radial-gradient(circle, rgba(245, 182, 94, 0.2), transparent 70%);
   animation: introOrbPulse2 5s ease-in-out infinite;
 }
 
@@ -57,7 +57,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.15), transparent 70%);
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.15), transparent 70%);
   animation: introOrbPulse3 6s ease-in-out infinite;
 }
 
@@ -96,10 +96,10 @@
   background: linear-gradient(
     135deg,
     #e2e8f0 0%,
-    #c084fc 25%,
-    #a78bfa 50%,
-    #7c3aed 75%,
-    #38bdf8 100%
+    #38bdf8 25%,
+    #22d3ee 50%,
+    #f59e0b 75%,
+    #f97316 100%
   );
   background-size: 300% 300%;
   -webkit-background-clip: text;
@@ -141,7 +141,7 @@
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #a78bfa;
+  color: #38bdf8;
   filter: blur(30px);
   opacity: 0.4;
   z-index: -1;
@@ -188,7 +188,7 @@
 .intro__divider {
   width: 60px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.6), transparent);
+  background: linear-gradient(90deg, transparent, rgba(57, 208, 255, 0.6), transparent);
   margin-top: 2rem;
 }
 
@@ -206,16 +206,16 @@
 .intro__progress-fill {
   height: 100%;
   border-radius: 2px;
-  background: linear-gradient(90deg, #7c3aed, #a78bfa, #38bdf8);
+  background: linear-gradient(90deg, #38bdf8, #f59e0b, #14b8a6);
   transform-origin: left;
-  box-shadow: 0 0 12px rgba(167, 139, 250, 0.6);
+  box-shadow: 0 0 12px rgba(57, 208, 255, 0.6);
 }
 
 /* ── Enter Button ── */
 .intro__enter {
   margin-top: 2.5rem;
   padding: 0.75rem 2.5rem;
-  border: 1px solid rgba(167, 139, 250, 0.3);
+  border: 1px solid rgba(57, 208, 255, 0.3);
   border-radius: 999px;
   background: transparent;
   color: rgba(255, 255, 255, 0.8);
@@ -238,7 +238,7 @@
   background: conic-gradient(
     from var(--intro-btn-angle, 0deg),
     transparent 30%,
-    rgba(167, 139, 250, 0.5) 50%,
+    rgba(57, 208, 255, 0.55) 50%,
     transparent 70%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -256,9 +256,9 @@
 }
 
 .intro__enter:hover {
-  border-color: rgba(167, 139, 250, 0.6);
+  border-color: rgba(57, 208, 255, 0.6);
   color: #ffffff;
-  box-shadow: 0 0 30px rgba(167, 139, 250, 0.2);
+  box-shadow: 0 0 30px rgba(57, 208, 255, 0.2);
   transform: scale(1.05);
 }
 
@@ -328,29 +328,29 @@
 .intro__corner--tl {
   top: 2rem;
   left: 2rem;
-  border-top: 1px solid rgba(167, 139, 250, 0.5);
-  border-left: 1px solid rgba(167, 139, 250, 0.5);
+  border-top: 1px solid rgba(57, 208, 255, 0.5);
+  border-left: 1px solid rgba(57, 208, 255, 0.5);
 }
 
 .intro__corner--tr {
   top: 2rem;
   right: 2rem;
-  border-top: 1px solid rgba(167, 139, 250, 0.5);
-  border-right: 1px solid rgba(167, 139, 250, 0.5);
+  border-top: 1px solid rgba(57, 208, 255, 0.5);
+  border-right: 1px solid rgba(57, 208, 255, 0.5);
 }
 
 .intro__corner--bl {
   bottom: 2rem;
   left: 2rem;
-  border-bottom: 1px solid rgba(167, 139, 250, 0.5);
-  border-left: 1px solid rgba(167, 139, 250, 0.5);
+  border-bottom: 1px solid rgba(57, 208, 255, 0.5);
+  border-left: 1px solid rgba(57, 208, 255, 0.5);
 }
 
 .intro__corner--br {
   bottom: 2rem;
   right: 2rem;
-  border-bottom: 1px solid rgba(167, 139, 250, 0.5);
-  border-right: 1px solid rgba(167, 139, 250, 0.5);
+  border-bottom: 1px solid rgba(57, 208, 255, 0.5);
+  border-right: 1px solid rgba(57, 208, 255, 0.5);
 }
 
 /* ── Responsive ── */

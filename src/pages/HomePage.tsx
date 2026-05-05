@@ -4,10 +4,12 @@ import ThreeBackground from '../components/ThreeBackground'
 import { useSmoothScroll } from '../context/ScrollContext'
 import { useScrollToHash } from '../hooks/useScrollToHash'
 import About from '../sections/About'
+import CTA from '../sections/CTA'
 import Contact from '../sections/Contact'
 import Hero from '../sections/Hero'
 import Projects from '../sections/Projects'
 import Skills from '../sections/Skills'
+import TechStack from '../sections/TechStack'
 
 const HomePage = () => {
   const { scrollTo } = useSmoothScroll()
@@ -25,12 +27,14 @@ const HomePage = () => {
       <Header />
       <Hero />
       <div className="mx-auto w-[min(1200px,92vw)] pb-20">
-        <About />
-        <Skills />
         <Projects />
+        <About />
+        <TechStack />
+        <Skills />
+        <CTA />
         <Contact />
         <footer className="mt-12 text-center text-xs uppercase tracking-[0.4em] text-muted">
-          Crafted with motion, systems thinking, and intent
+          Crafted with product focus, design systems, and intent
         </footer>
       </div>
     </motion.main>

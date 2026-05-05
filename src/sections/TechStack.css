@@ -1,0 +1,112 @@
+/* TECH STACK - product toolchain */
+
+.stack-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .stack-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stack-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 12px 40px rgba(4, 10, 24, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.stack-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(480px circle at 20% 0%, rgba(57, 208, 255, 0.12), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.stack-card:hover::after {
+  opacity: 1;
+}
+
+.stack-card__header {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.stack-card__title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+}
+
+.stack-card__desc {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+
+.stack-items {
+  display: grid;
+  gap: 12px;
+}
+
+.stack-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.stack-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(57, 208, 255, 0.35);
+  background: rgba(57, 208, 255, 0.08);
+}
+
+.stack-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 10px;
+  background: rgba(57, 208, 255, 0.15);
+  border: 1px solid rgba(57, 208, 255, 0.3);
+  color: rgba(57, 208, 255, 0.95);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.stack-text {
+  display: grid;
+  gap: 2px;
+}
+
+.stack-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.stack-role {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.04em;
+}

@@ -43,7 +43,7 @@ const Projects = () => {
   }, [activeFilter, searchQuery, sortBy])
 
   return (
-    <Section id="projects" eyebrow="Projects" title="Premium systems, real impact">
+    <Section id="projects" eyebrow="Case Studies" title="Product-grade builds with measurable impact">
       {/* ── Controls Bar ── */}
       <div className="projects-controls">
         {/* Search */}
@@ -55,7 +55,7 @@ const Projects = () => {
           <input
             type="text"
             className="projects-search"
-            placeholder="Search projects..."
+            placeholder="Search case studies..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
           />
@@ -126,7 +126,7 @@ const Projects = () => {
       {/* ── Results Meta ── */}
       <div className="projects-meta">
         <span className="meta-count">
-          Showing <strong>{filteredProjects.length}</strong> of {projects.length} projects
+          Showing <strong>{filteredProjects.length}</strong> of {projects.length} case studies
         </span>
         {(activeFilter !== 'All' || searchQuery) && (
           <button
@@ -178,9 +178,9 @@ const Projects = () => {
       {/* ── Stats Strip ── */}
       <div className="projects-stats">
         {[
-          { label: 'Total Projects', value: projects.length },
+          { label: 'Case Studies', value: projects.length },
           { label: 'Categories', value: categories.length - 1 },
-          { label: 'Technologies', value: Array.from(new Set(projects.flatMap(p => p.tags ?? []))).length },
+          { label: 'Focus Areas', value: Array.from(new Set(projects.flatMap(p => p.tags ?? []))).length },
         ].map(stat => (
           <div key={stat.label} className="stat-item">
             <span className="stat-value">{stat.value}+</span>

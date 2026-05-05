@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 
 const STATUS_ITEMS = [
-  'Agentic workflows & ML pipelines',
-  'Realtime systems and data layers',
-  'High-performance UI and motion design',
+  'Design systems and component libraries',
+  'Performance, accessibility, and UX polish',
+  'Scalable React architectures for products',
 ]
 
 const contentVariants: Variants = {
@@ -27,10 +27,10 @@ const HeroRightCard = () => {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
-    /* Outer wrapper — must be relative so the button can be positioned */
+    /* Outer wrapper - must be relative so the button can be positioned */
     <div style={{ position: 'relative' }}>
 
-      {/* ── "View Profile" pill — always top-right corner of the card ── */}
+      {/* ── "View Profile" pill - always top-right corner of the card ── */}
       <AnimatePresence>
         {!isExpanded && (
           <motion.button
@@ -50,8 +50,8 @@ const HeroRightCard = () => {
               gap: '0.4rem',
               padding: '0.35rem 0.85rem',
               borderRadius: '999px',
-              border: '1px solid rgba(167, 139, 250, 0.25)',
-              background: 'rgba(139, 92, 246, 0.08)',
+              border: '1px solid rgba(57, 208, 255, 0.25)',
+              background: 'rgba(57, 208, 255, 0.1)',
               backdropFilter: 'blur(8px)',
               color: 'rgba(255,255,255,0.7)',
               fontSize: '0.62rem',
@@ -63,15 +63,15 @@ const HeroRightCard = () => {
             }}
             onMouseEnter={e => {
               const btn = e.currentTarget
-              btn.style.borderColor = 'rgba(167, 139, 250, 0.55)'
-              btn.style.background = 'rgba(139, 92, 246, 0.18)'
+              btn.style.borderColor = 'rgba(57, 208, 255, 0.6)'
+              btn.style.background = 'rgba(57, 208, 255, 0.2)'
               btn.style.color = '#fff'
-              btn.style.boxShadow = '0 0 20px rgba(139, 92, 246, 0.25)'
+              btn.style.boxShadow = '0 0 20px rgba(57, 208, 255, 0.25)'
             }}
             onMouseLeave={e => {
               const btn = e.currentTarget
-              btn.style.borderColor = 'rgba(167, 139, 250, 0.25)'
-              btn.style.background = 'rgba(139, 92, 246, 0.08)'
+              btn.style.borderColor = 'rgba(57, 208, 255, 0.25)'
+              btn.style.background = 'rgba(57, 208, 255, 0.1)'
               btn.style.color = 'rgba(255,255,255,0.7)'
               btn.style.boxShadow = 'none'
             }}
@@ -79,8 +79,8 @@ const HeroRightCard = () => {
             {/* Pulsing dot */}
             <span style={{
               width: '5px', height: '5px', borderRadius: '50%',
-              background: '#a78bfa',
-              boxShadow: '0 0 6px rgba(167, 139, 250, 0.7)',
+              background: 'var(--accent)',
+              boxShadow: '0 0 6px rgba(57, 208, 255, 0.7)',
               flexShrink: 0,
             }} />
             View Profile
@@ -109,12 +109,12 @@ const HeroRightCard = () => {
             </div>
 
             <h3 className="hero-status__heading">
-              Building the next wave of intelligent systems
+              Building product-grade frontend experiences
             </h3>
 
             <p className="hero-status__body">
-              Focused on AI-first products, resilient architectures, and
-              premium user experiences that feel like the future.
+              Focused on responsive UI, scalable architecture, and motion
+              that supports user intent.
             </p>
 
             <div className="hero-status__items">
@@ -205,7 +205,7 @@ const HeroRightCard = () => {
                 margin: '0.2rem 0 0',
                 textShadow: '0 1px 8px rgba(0,0,0,0.5)',
               }}>
-                Full Stack · AI Systems
+                Frontend · React
               </p>
             </motion.div>
 
@@ -237,7 +237,7 @@ const HeroRightCard = () => {
               onMouseEnter={e => {
                 const btn = e.currentTarget
                 btn.style.background = 'rgba(0,0,0,0.7)'
-                btn.style.borderColor = 'rgba(167, 139, 250, 0.45)'
+                btn.style.borderColor = 'rgba(57, 208, 255, 0.45)'
                 btn.style.color = '#fff'
               }}
               onMouseLeave={e => {

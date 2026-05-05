@@ -4,21 +4,21 @@ import Section from '../components/Section'
 
 /* ── helpers ── */
 const SKILLS = [
-  { label: 'Full-stack product engineering', icon: '⚡' },
-  { label: 'Machine learning & predictive systems', icon: '🧠' },
-  { label: 'System design and architecture', icon: '🏗️' },
-  { label: 'Human-centered UX and motion design', icon: '🎨' },
+  { label: 'Design systems and component libraries', icon: '🧩' },
+  { label: 'Responsive UI engineering', icon: '📱' },
+  { label: 'Performance and accessibility', icon: '⚡' },
+  { label: 'Interaction design and motion', icon: '🎨' },
 ]
 
 const FOCUS_ITEMS = [
-  'Smart India Hackathon finalist projects',
-  'Full-stack + ML pipeline delivery',
-  'Motion-first, premium UI engineering',
+  'Product-grade React case studies',
+  'Component-driven architecture and reuse',
+  'Polished UX with clear system behavior',
 ]
 
 const STATS = [
-  { value: 15, suffix: '+', label: 'Projects Built' },
-  { value: 3, suffix: '+', label: 'Hackathons Participated' },
+  
+  { value: 3, suffix: '+', label: 'Hackathons' },
   { value: 10, suffix: 'K+', label: 'Lines of Code' },
 ]
 
@@ -122,11 +122,10 @@ const About = () => {
         {/* ───── LEFT CARD ───── */}
         <TiltCard className={`about-card about-card--left ${visible ? 'revealed' : ''}`}>
           <p className="about-card__intro">
-            I&apos;m <span className="text-gradient">Aaditya</span>, a B.Tech
-            student obsessed with building full-stack experiences that merge AI,
-            system design, and cinematic motion. My focus is on intelligent
-            platforms that scale gracefully, feel premium, and tell a story with
-            every interaction.
+            I&apos;m <span className="text-gradient">Aaditya</span>, a frontend
+            developer focused on React and design systems. I build responsive
+            interfaces that translate product intent into clear, fast, and
+            reliable user experiences.
           </p>
 
           {/* skill pills */}
@@ -157,13 +156,13 @@ const About = () => {
           <p className="about-card__eyebrow">Current Focus</p>
 
           <h3 className="about-card__heading">
-            Building AI-powered systems that reduce friction
+            Building frontend systems that scale
           </h3>
 
           <p className="about-card__body">
-            From healthcare surveillance to logistics intelligence, I architect
-            platforms that connect real-world operations with precise data
-            intelligence. My work blends product thinking with scalable tech.
+            From dashboards to consumer products, I design UI flows that feel
+            intuitive, prioritize clarity, and keep performance tight as the
+            product grows.
           </p>
 
           <div className="focus-list">

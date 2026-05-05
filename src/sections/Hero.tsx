@@ -12,7 +12,7 @@ import HeroRightCard from '../components/HeroRightCard'
 import { useSmoothScroll } from '../context/ScrollContext'
 import { useTypewriter } from '../hooks/useTypewriter'
 
-const roles = ['AI Systems Builder', 'Full Stack Engineer', 'Product Architect']
+const roles = ['React Developer', 'Frontend Engineer', 'UI Systems Builder']
 
 /* ── Canvas Particle Field ── */
 function ParticleCanvas() {
@@ -45,7 +45,7 @@ function ParticleCanvas() {
       size: Math.random() * 1.8 + 0.5,
       baseAlpha: Math.random() * 0.5 + 0.15,
       alpha: 0,
-      hue: 260 + Math.random() * 40,
+      hue: 190 + Math.random() * 30,
       flicker: Math.random() * Math.PI * 2,
       flickerSpeed: 0.02 + Math.random() * 0.03,
     }))
@@ -114,7 +114,7 @@ function ParticleCanvas() {
             ctx.beginPath()
             ctx.moveTo(particles[i].x, particles[i].y)
             ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.strokeStyle = `hsla(275, 70%, 60%, ${0.08 * (1 - d / 100)})`
+            ctx.strokeStyle = `hsla(195, 70%, 60%, ${0.08 * (1 - d / 100)})`
             ctx.lineWidth = 0.5
             ctx.stroke()
           }
@@ -261,7 +261,7 @@ const Hero = () => {
             {/* eyebrow badge */}
             <motion.div className="hero-badge" variants={fadeUp}>
               <span className="hero-badge__dot" />
-               PORTFOLIO
+              PORTFOLIO
             </motion.div>
 
             {/* heading */}
@@ -272,7 +272,12 @@ const Hero = () => {
 
             {/* subtitle */}
             <motion.p className="hero-subtitle" variants={fadeUp}>
-              Full Stack Developer | AI &amp; Systems Builder
+              Frontend Developer | React Developer
+            </motion.p>
+
+            <motion.p className="hero-value" variants={fadeUp}>
+              Frontend developer specializing in responsive, scalable, and
+              user-focused web applications that feel fast and polished.
             </motion.p>
 
             {/* typewriter */}
@@ -284,7 +289,7 @@ const Hero = () => {
             {/* CTA buttons */}
             <motion.div className="hero-cta" variants={fadeUp}>
               <MagneticButton onClick={() => scrollTo('#projects')}>
-                View Projects
+                View Case Studies
               </MagneticButton>
               <MagneticButton
                 href="/Aaditya cv.pdf"
@@ -304,7 +309,7 @@ const Hero = () => {
 
             {/* chips */}
             <motion.div className="hero-chips" variants={fadeUp}>
-              {['B.Tech Student', 'Full-Stack + ML', 'System Design'].map(
+              {['Design Systems', 'Performance', 'Accessible UI'].map(
                 (chip, i) => (
                   <span
                     key={chip}

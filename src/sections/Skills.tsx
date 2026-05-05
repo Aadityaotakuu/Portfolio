@@ -6,10 +6,10 @@ import { skillCategories } from '../data/skills'
 
 /* ── tiny helpers ── */
 const levelLabel = (lvl: number) => {
-  if (lvl >= 90) return { text: 'Expert', color: '#a78bfa' }
-  if (lvl >= 75) return { text: 'Advanced', color: '#6366f1' }
-  if (lvl >= 55) return { text: 'Proficient', color: '#38bdf8' }
-  return { text: 'Familiar', color: '#34d399' }
+  if (lvl >= 90) return { text: 'Expert', color: '#39d0ff' }
+  if (lvl >= 75) return { text: 'Advanced', color: '#f5b65e' }
+  if (lvl >= 55) return { text: 'Proficient', color: '#14b8a6' }
+  return { text: 'Familiar', color: '#94a3b8' }
 }
 
 /* ── Radar mini-chart ── */
@@ -275,7 +275,7 @@ const Skills = () => {
   )
 
   return (
-    <Section id="skills" eyebrow="Skills" title="The stack behind the magic">
+    <Section id="skills" eyebrow="Skills" title="The craft behind every interface">
       {/* ── Summary bar ── */}
       <motion.div
         className="skills-summary"
@@ -346,10 +346,10 @@ const Skills = () => {
         transition={{ delay: 0.4 }}
       >
         {[
-          { label: 'Expert', color: '#a78bfa', min: 90 },
-          { label: 'Advanced', color: '#6366f1', min: 75 },
-          { label: 'Proficient', color: '#38bdf8', min: 55 },
-          { label: 'Familiar', color: '#34d399', min: 0 },
+          { label: 'Expert', color: '#39d0ff', min: 90 },
+          { label: 'Advanced', color: '#f5b65e', min: 75 },
+          { label: 'Proficient', color: '#14b8a6', min: 55 },
+          { label: 'Familiar', color: '#94a3b8', min: 0 },
         ].map((l) => (
           <div key={l.label} className="legend-item">
             <span className="legend-dot" style={{ background: l.color }} />

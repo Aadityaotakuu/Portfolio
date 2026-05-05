@@ -1,18 +1,19 @@
 /* ╔══════════════════════════════════════════════════╗
-   ║             PROJECT CARD CSS                     ║
+  ║        PROJECT CARD - CASE STUDY STYLE          ║
    ╚══════════════════════════════════════════════════╝ */
 
 .pcard {
   position: relative;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 1.5rem;
   padding: 1.5rem;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  height: 100%;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   transform-style: preserve-3d;
   transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
 }
@@ -24,11 +25,11 @@
 }
 
 .pcard.hovered {
-  border-color: rgba(139, 92, 246, 0.4);
+  border-color: rgba(57, 208, 255, 0.4);
   background: rgba(255, 255, 255, 0.04);
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 20px 40px rgba(4, 8, 20, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .pcard-glow {
@@ -44,19 +45,87 @@
   opacity: 1;
 }
 
-.pcard-accent-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.8), transparent);
-  transform: scaleX(0);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+.pcard-preview {
+  position: relative;
+  border-radius: 1.1rem;
+  padding: 1.15rem 1.25rem;
+  background: linear-gradient(135deg, var(--preview-accent), var(--preview-secondary));
+  color: #06111c;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
-.pcard.hovered .pcard-accent-bar {
-  transform: scaleX(1);
+.pcard-preview::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.25), transparent 45%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.pcard-preview__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.pcard-preview__pill {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(6, 17, 28, 0.12);
+}
+
+.pcard-preview__tag {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(6, 17, 28, 0.2);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.pcard-preview__body {
+  margin-top: 1.25rem;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.pcard-preview__metric {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.pcard-preview__label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+}
+
+.pcard-preview__grid {
+  margin-top: 1.25rem;
+  display: grid;
+  gap: 0.35rem;
+  position: relative;
+  z-index: 1;
+}
+
+.pcard-preview__line {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(6, 17, 28, 0.18);
 }
 
 .pcard-header {
@@ -66,6 +135,7 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 1rem;
+  margin-top: 1.75rem;
 }
 
 .pcard-header-left {
@@ -76,14 +146,14 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .pcard-eyebrow {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: rgba(139, 92, 246, 0.8);
+  letter-spacing: 0.18em;
+  color: rgba(57, 208, 255, 0.85);
   font-weight: 600;
 }
 
@@ -91,13 +161,13 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.2rem 0.5rem;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.55rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(6, 17, 28, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--status-color, #94a3b8);
 }
 
@@ -109,10 +179,21 @@
   box-shadow: 0 0 8px var(--status-color, #94a3b8);
 }
 
+.pcard-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.pcard-icon {
+  font-size: 1.1rem;
+}
+
 .pcard-title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--);  line-height: 1.2;
+  color: var(--text);
+  line-height: 1.2;
 }
 
 @media (min-width: 768px) {
@@ -121,88 +202,73 @@
   }
 }
 
+.pcard-meta {
+  margin-top: 0.4rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.pcard-meta-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+}
+
 .pcard-index {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 800;
-  color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.2);
   font-variant-numeric: tabular-nums;
   display: inline-block;
   user-select: none;
 }
 
 .pcard.hovered .pcard-index {
-  color: rgba(139, 92, 246, 0.6);
+  color: rgba(57, 208, 255, 0.7);
 }
 
-.pcard-desc {
+.pcard-summary {
   position: relative;
   z-index: 10;
   margin-top: 1rem;
-  font-size: 0.875rem;
+  font-size: 0.95rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.82);
 }
 
-.pcard-highlight {
-  position: relative;
-  z-index: 10;
-  margin-top: 1.25rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
-  background: rgba(139, 92, 246, 0.15);
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  padding: 0.4rem 0.8rem;
-  border-radius: 0.5rem;
-}
-
-.pcard-tabs {
-  position: relative;
-  z-index: 10;
-  margin-top: 1.5rem;
+.pcard-body {
   display: flex;
-  gap: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 0.5rem;
+  flex-direction: column;
+  flex: 1;
 }
 
-.pcard-tab {
-  position: relative;
-  background: transparent;
-  border: none;
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0.25rem 0.5rem;
-  transition: color 0.3s;
-}
-
-.pcard-tab:hover {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.pcard-tab.active {
-  color: var(--);}
-
-.pcard-tab-line {
-  position: absolute;
-  bottom: -0.6rem;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: #a78bfa;
-  border-radius: 2px 2px 0 0;
-}
-
-.pcard-tab-content {
+.pcard-section {
   position: relative;
   z-index: 10;
   margin-top: 1.25rem;
-  min-height: 100px;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pcard-section__label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: rgba(57, 208, 255, 0.7);
+  margin-bottom: 0.75rem;
+}
+
+.pcard-section__text {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .pcard-features {
@@ -219,36 +285,62 @@
   align-items: flex-start;
   gap: 0.5rem;
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.75);
   line-height: 1.5;
 }
 
 .feature-bullet {
   margin-top: 0.4rem;
   flex-shrink: 0;
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: #a78bfa;
-  box-shadow: 0 0 5px rgba(167, 139, 250, 0.8);
+  background: var(--accent);
+  box-shadow: 0 0 6px rgba(57, 208, 255, 0.8);
 }
 
 .pcard-expand {
   margin-top: 0.75rem;
   background: transparent;
   border: none;
-  color: #a78bfa;
+  color: var(--accent);
   font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
   padding: 0;
-  opacity: 0.8;
+  opacity: 0.85;
   transition: opacity 0.2s;
 }
 
 .pcard-expand:hover {
   opacity: 1;
   text-decoration: underline;
+}
+
+.pcard-toggle {
+  margin-top: 1rem;
+  align-self: flex-start;
+  background: rgba(57, 208, 255, 0.12);
+  border: 1px solid rgba(57, 208, 255, 0.3);
+  color: rgba(57, 208, 255, 0.9);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.pcard-toggle:hover {
+  transform: translateY(-1px);
+  background: rgba(57, 208, 255, 0.2);
+  border-color: rgba(57, 208, 255, 0.45);
+}
+
+.pcard-details {
+  margin-top: 1rem;
 }
 
 .pcard-tech-grid {
@@ -268,20 +360,58 @@
   cursor: default;
 }
 
+.pcard-trust {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.pcard-trust__item {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.pcard-trust__label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.pcard-trust__text {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+.pcard-highlight {
+  position: relative;
+  z-index: 10;
+  margin-top: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(57, 208, 255, 0.9);
+  background: rgba(57, 208, 255, 0.12);
+  border: 1px solid rgba(57, 208, 255, 0.3);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+}
+
 .pcard-tags {
   position: relative;
   z-index: 10;
-  margin-top: auto;
-  padding-top: 1.5rem;
+  margin-top: 1.75rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
 .pcard-tag {
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.4);
-  font-family: monospace;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
 .pcard-footer {
@@ -291,86 +421,29 @@
   padding-top: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.pcard-actions-left {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.pcard-action-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--);  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
-}
-
-.pcard-action-btn.like-btn {
-  width: auto;
-  padding: 0 0.75rem;
-  border-radius: 999px;
-}
-
-.pcard-action-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.like-btn.liked {
-  background: rgba(239, 68, 68, 0.15);
-  border-color: rgba(239, 68, 68, 0.3);
-  color: #f87171;
-}
-
-.action-count {
-  font-size: 0.75rem;
-  font-weight: 600;
+  justify-content: flex-end;
 }
 
 .pcard-actions-right {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
-.btn-inner {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.pcard-link {
+  font-size: 0.75rem;
+  padding: 0.55rem 1.1rem;
 }
 
-/* Particles */
-.pcard-particle {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: #a78bfa;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #a78bfa;
-  pointer-events: none;
-  z-index: 20;
-  animation: float-particle 2s infinite ease-in-out var(--p-delay);
-}
-
-.pcard-particle:nth-child(1) { top: -1px; left: 20%; }
-.pcard-particle:nth-child(2) { top: 40%; right: -1px; }
-.pcard-particle:nth-child(3) { bottom: -1px; left: 70%; }
-
-@keyframes float-particle {
-  0% { transform: scale(0) translate(0, 0); opacity: 0; }
-  50% { transform: scale(1.5) translate(0, -10px); opacity: 1; }
-  100% { transform: scale(0) translate(0, -20px); opacity: 0; }
+.pcard-private {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
 }
 
 @media (max-width: 640px) {
@@ -386,18 +459,8 @@
     align-self: flex-end;
   }
 
-  .pcard-tabs {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
   .pcard-footer {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .pcard-actions-left {
-    width: 100%;
+    justify-content: flex-start;
     justify-content: space-between;
   }
 

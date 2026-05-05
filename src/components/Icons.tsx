@@ -11,3 +11,9 @@ export const LinkedInIcon = (props: SVGProps<SVGSVGElement>) => (
     <path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3.4 9h3.2v11H3.4V9zm7 0h3v1.5h.1c.4-.7 1.4-1.5 3-1.5 3.2 0 3.8 2.1 3.8 4.8V20h-3.2v-5.2c0-1.2 0-2.8-1.7-2.8-1.7 0-2 1.3-2 2.7V20h-3.2V9z" />
   </svg>
 )
+
+export const MailIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+    <path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm0 2v.5l8 5 8-5V7H4zm16 3.2-6.8 4.25a2 2 0 0 1-2.4 0L4 10.2V17h16v-6.8z" />
+  </svg>
+)
